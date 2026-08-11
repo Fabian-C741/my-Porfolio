@@ -1,0 +1,16 @@
+{
+  "name": "portfolio-fabian-caceres",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/input.css -o ./dist/styles.css --minify",
+    "watch:css": "tailwindcss -i ./src/input.css -o ./dist/styles.css --watch",
+    "build": "npm run build:css && node scripts/copy-static.cjs"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.0",
+    "postcss": "^8.4.0",
+    "postcss-import": "^16.1.1",
+    "tailwindcss": "^3.4.0"
+  }
+}

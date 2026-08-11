@@ -1,0 +1,12 @@
+/* Clean responsive helpers now that layout is handled by Tailwind utilities. */
+.hero-terminal{z-index:30}
+.hero-content{max-width:760px}
+/* Override legacy absolute positioning from main stylesheet so terminal participates in grid flow */
+.hero-inner .hero-terminal, .hero-terminal{
+  position:relative !important;
+  right:auto !important;
+  bottom:auto !important;
+  width:100% !important;
+  max-width:420px !important;
+  margin:0 !important;
+}

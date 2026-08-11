@@ -1,0 +1,22 @@
+node_modules/
+dist/
+
+# Cloudflare / Wrangler
+.wrangler/
+.dev.vars
+wrangler.wrangler-*
+wrangler.toml
+!wrangler.toml.example
+
+# Guias de deploy / infra (no se suben al repo)
+CLOUDFLARE_DEPLOY.md
+
+# Logs & OS
+*.log
+.DS_Store
+Thumbs.db
+
+# Sensitive / local
+.env
+.env.*
+!.env.example

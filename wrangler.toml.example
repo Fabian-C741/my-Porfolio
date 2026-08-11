@@ -1,0 +1,9 @@
+name = "portfolio-fabian-caceres-worker"
+main = "workers/index.js"
+compatibility_date = "2026-08-11"
+
+# Copia este archivo a `wrangler.toml` local (no se sube al repo) y rellena
+# `account_id` con tu Cloudflare Account ID antes de publicar.
+# El secreto requerido por el Worker se configura con:
+#   wrangler secret put SECRET_API_KEY
+account_id = "YOUR_ACCOUNT_ID"

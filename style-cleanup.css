@@ -1,0 +1,46 @@
+/* Cleanup overrides to disable legacy absolute positioning and ensure grid flow */
+.hero-terminal{
+  position:relative !important;
+  right:auto !important;
+  bottom:auto !important;
+  width:100% !important;
+  max-width:420px !important;
+  margin:0 auto !important;
+  z-index:30 !important;
+  opacity:1 !important;
+  transform:none !important;
+  display:block !important;
+}
+.hero-right{
+  width:100% !important;
+}
+/* Small adjustments */
+@media (max-width:767px){
+  .hero-inner{
+    display:block !important;
+    width:100% !important;
+  }
+  .hero-right{
+    align-items:center !important;
+    justify-content:center !important;
+  }
+  .hero-terminal{
+    right:auto !important;
+    bottom:auto !important;
+    opacity:1 !important;
+    transform:none !important;
+    display:block !important;
+    margin-top:1rem !important;
+  }
+}
+
+/* Force two-column layout on medium+ screens in case Tailwind utilities are not present */
+@media (min-width:768px){
+  .hero-inner{
+    display:grid !important;
+    grid-template-columns:1fr 1fr !important;
+    gap:2rem !important;
+    align-items:center !important;
+  }
+  .hero-right{display:flex !important;flex-direction:column !important;align-items:flex-end !important}
+}
