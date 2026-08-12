@@ -16,21 +16,39 @@
 }
 /* Small adjustments */
 @media (max-width:767px){
+  .hero{
+    align-items:flex-start !important;
+    padding-top:100px !important;
+    padding-bottom:60px !important;
+  }
   .hero-inner{
-    display:block !important;
+    display:flex !important;
+    flex-direction:column !important;
+    gap:1.5rem !important;
+    width:100% !important;
+    align-items:stretch !important;
+  }
+  .hero-left,
+  .hero-right{
     width:100% !important;
   }
   .hero-right{
+    display:flex !important;
+    flex-direction:column !important;
     align-items:center !important;
     justify-content:center !important;
+    margin:0 auto !important;
   }
   .hero-terminal{
+    position:relative !important;
     right:auto !important;
     bottom:auto !important;
     opacity:1 !important;
     transform:none !important;
     display:block !important;
-    margin-top:1rem !important;
+    width:100% !important;
+    max-width:calc(100% - 32px) !important;
+    margin:1rem auto 0 !important;
   }
 }
 
@@ -43,4 +61,34 @@
     align-items:center !important;
   }
   .hero-right{display:flex !important;flex-direction:column !important;align-items:flex-end !important}
+}
+
+/* Strong mobile cleanup for legacy overrides */
+@media (max-width:950px){
+  .hero-terminal{
+    display:block !important;
+    opacity:1 !important;
+    position:relative !important;
+    right:auto !important;
+    bottom:auto !important;
+    transform:none !important;
+    width:100% !important;
+    max-width:420px !important;
+    margin:1rem auto 0 !important;
+  }
+}
+@media (max-width:600px){
+  .hero-terminal{
+    display:block !important;
+    opacity:1 !important;
+    position:relative !important;
+    right:auto !important;
+    bottom:auto !important;
+    transform:none !important;
+    width:100% !important;
+    max-width:100% !important;
+    margin:1rem auto 0 !important;
+  }
+  .hero{padding:120px 7% 80px !important;align-items:flex-start !important;}
+  .hero h1{font-size:clamp(42px,6vw,58px) !important;letter-spacing:-2px !important;}
 }

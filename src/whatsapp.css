@@ -1,0 +1,91 @@
+/* Boton flotante de WhatsApp — siempre visible, ciclo animado */
+.wa-fab{
+  position:fixed;
+  right:24px;
+  bottom:24px;
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:45;
+  background:radial-gradient(circle at 30% 25%,#2bd465,#1faa4d 70%);
+  border:1px solid rgba(255,255,255,.22);
+  box-shadow:0 8px 28px rgba(37,211,102,.4),inset 0 1px 0 rgba(255,255,255,.25);
+  transition:transform .3s ease,box-shadow .3s ease;
+  cursor:pointer;
+}
+.wa-fab:hover{
+  transform:translateY(-3px) scale(1.05);
+  box-shadow:0 14px 40px rgba(37,211,102,.55),inset 0 1px 0 rgba(255,255,255,.25);
+}
+.wa-icon{
+  width:34px;
+  height:34px;
+  transform-origin:center;
+  animation:wa-cycle 7s ease-in-out infinite;
+}
+.wa-ring{
+  position:absolute;
+  inset:-6px;
+  border-radius:50%;
+  border:2px solid rgba(37,211,102,.45);
+  animation:wa-ring 7s ease-out infinite;
+  pointer-events:none;
+}
+.wa-bubble{
+  position:absolute;
+  right:calc(100% + 14px);
+  top:50%;
+  transform:translate(10px,-50%);
+  white-space:nowrap;
+  font:500 13px "Space Grotesk",sans-serif;
+  letter-spacing:.2px;
+  color:#0b120d;
+  background:#eafff2;
+  border:1px solid rgba(37,211,102,.35);
+  border-radius:8px;
+  padding:8px 14px;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  box-shadow:0 8px 24px rgba(0,0,0,.35);
+  transition:opacity .3s ease,transform .3s ease,visibility .3s ease;
+}
+.wa-bubble::after{
+  content:"";
+  position:absolute;
+  right:-6px;
+  top:50%;
+  transform:translateY(-50%);
+  border:6px solid transparent;
+  border-left-color:#eafff2;
+}
+.wa-fab:hover .wa-bubble{
+  opacity:1;
+  visibility:visible;
+  transform:translate(0,-50%);
+}
+
+@keyframes wa-cycle{
+  0%,72%{transform:scale(1)}
+  78%,88%{transform:scale(.62)}
+  94%,100%{transform:scale(1)}
+}
+@keyframes wa-ring{
+  0%{transform:scale(.9);opacity:.8}
+  72%{transform:scale(.9);opacity:0}
+  78%,94%{transform:scale(1.35);opacity:0}
+  100%{transform:scale(1.35);opacity:0}
+}
+
+/* Mover el boton "volver arriba" por encima del FAB */
+#top{right:25px;bottom:92px}
+
+@media (max-width:600px){
+  .wa-fab{width:50px;height:50px;right:18px;bottom:18px}
+  .wa-icon{width:29px;height:29px}
+  .wa-bubble{font-size:12px;padding:6px 11px;right:calc(100% + 10px)}
+  #top{right:18px;bottom:82px}
+}
