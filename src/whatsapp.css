@@ -1,107 +1,519 @@
-/* Boton flotante de WhatsApp — estilo NBCH: inflado tipo globo y texto dentro del circulo */
-.wa-fab{
-  position:fixed;
-  right:22px;
-  bottom:22px;
-  width:84px;
-  height:84px;
-  border-radius:50%;
-  background:radial-gradient(circle at 30% 25%,#00e087,#00b463 70%);
-  border:2px solid #b9f7d9;
-  box-shadow:0 10px 32px rgba(0,180,99,.45);
-  text-decoration:none;
-  z-index:45;
-  overflow:hidden;
-  display:block;
-  transition:transform .3s ease,box-shadow .3s ease;
-  cursor:pointer;
-}
-.wa-fab:hover{
-  transform:translateY(-3px);
-  box-shadow:0 14px 44px rgba(0,180,99,.6);
-}
-.wa-icon{
-  position:absolute;
-  left:50%;
-  top:42%;
-  width:56px;
-  height:56px;
-  transform:translate(-50%,-50%);
-  animation:wa-icon-cycle 7s ease-in-out infinite;
-}
-.wa-ring{
-  position:absolute;
-  inset:-8px;
-  border-radius:50%;
-  border:2px solid rgba(0,180,99,.45);
-  animation:wa-ring 7s ease-out infinite;
-  pointer-events:none;
-}
-.wa-text{
-  position:absolute;
-  left:50%;
-  top:59%;
-  transform:translateX(-50%);
-  white-space:nowrap;
-  font:600 7.5px "Space Grotesk",sans-serif;
-  line-height:1.2;
-  letter-spacing:.1px;
-  color:#f2fff8;
-  text-align:center;
-  text-shadow:0 1px 2px rgba(0,80,45,.45);
-  opacity:0;
-  visibility:hidden;
-  animation:wa-text-cycle 7s ease-in-out infinite;
-  pointer-events:none;
-}
-.wa-fab:hover .wa-text{
-  opacity:1;
-  visibility:visible;
-  animation:none;
+/* =========================================================
+   WHATSAPP FAB — EFECTO GLOBO QUE SE INFLA Y REVIENTA
+   ========================================================= */
+
+.wa-fab {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+
+  width: 84px;
+  height: 84px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle at 30% 25%,
+      #24ea8c 0%,
+      #00d084 38%,
+      #00b366 72%,
+      #009c58 100%
+    );
+
+  border: 2px solid #b9f7d9;
+
+  box-shadow:
+    0 10px 32px rgba(0, 180, 99, 0.45),
+    inset 0 2px 7px rgba(255,255,255,.18);
+
+  text-decoration: none;
+
+  z-index: 45;
+
+  overflow: visible;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease;
 }
 
-@keyframes wa-icon-cycle{
-  0%,30%{transform:translate(-50%,-50%) scale(1.22)}
-  34%,38%{transform:translate(-50%,-50%) scale(.3)}
-  44%{transform:translate(-50%,-46%) scale(.34);transform-origin:50% 100%}
-  56%{transform:translate(-50%,-50%) scale(1.45);transform-origin:50% 100%}
-  62%{transform:translate(-50%,-50%) scale(1.45);transform-origin:50% 50%}
-  66%,86%{transform:translate(-50%,-50%) scale(.32)}
-  94%,100%{transform:translate(-50%,-50%) scale(1.22)}
-}
-@keyframes wa-ring{
-  0%,30%{transform:scale(.96);opacity:.6}
-  36%{transform:scale(.96);opacity:0}
-  60%,84%{transform:scale(1.22);opacity:0}
-  100%{transform:scale(1.22);opacity:0}
-}
-@keyframes wa-text-cycle{
-  0%,62%{opacity:0;visibility:hidden}
-  66%,86%{opacity:1;visibility:visible}
-  92%,100%{opacity:0;visibility:hidden}
+
+/* =========================================================
+   BRILLO DEL BOTÓN
+   ========================================================= */
+
+.wa-fab::before {
+  content: "";
+
+  position: absolute;
+
+  top: 8px;
+  left: 16px;
+
+  width: 28px;
+  height: 11px;
+
+  border-radius: 50%;
+
+  background: rgba(255,255,255,.20);
+
+  filter: blur(4px);
+
+  transform: rotate(-20deg);
+
+  pointer-events: none;
 }
 
-/* Mover el boton "volver arriba" por encima del FAB */
-#top{right:25px;bottom:120px}
 
-@media (max-width:600px){
-  .wa-fab{width:72px;height:72px;right:16px;bottom:16px}
-  .wa-icon{width:50px;height:50px;top:41%}
-  .wa-text{font-size:7px;top:57%}
-  .wa-ring{inset:-6px}
-  @keyframes wa-icon-cycle{
-    0%,30%{transform:translate(-50%,-50%) scale(1.22)}
-    34%,38%{transform:translate(-50%,-50%) scale(.3)}
-    44%{transform:translate(-50%,-46%) scale(.34);transform-origin:50% 100%}
-    56%{transform:translate(-50%,-50%) scale(1.45);transform-origin:50% 100%}
-    62%{transform:translate(-50%,-50%) scale(1.45);transform-origin:50% 50%}
-    66%,86%{transform:translate(-50%,-50%) scale(.32)}
-    94%,100%{transform:translate(-50%,-50%) scale(1.22)}
+/* =========================================================
+   CONTENEDOR DEL GLOBO
+   ========================================================= */
+
+.wa-balloon {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 55px;
+  height: 55px;
+
+  transform:
+    translate(-50%, -50%)
+    scale(.2);
+
+  transform-origin: 35% 88%;
+
+  animation: wa-inflate 8s infinite
+    cubic-bezier(.22,.61,.36,1);
+
+  z-index: 3;
+}
+
+
+/* SVG */
+
+.wa-icon {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+}
+
+
+/* =========================================================
+   ANILLO / EXPLOSIÓN
+   ========================================================= */
+
+.wa-ring {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 58px;
+  height: 58px;
+
+  border-radius: 50%;
+
+  border: 2px solid rgba(157,255,210,.85);
+
+  transform:
+    translate(-50%, -50%)
+    scale(.35);
+
+  opacity: 0;
+
+  animation: wa-pop 8s infinite ease-out;
+
+  pointer-events: none;
+
+  z-index: 2;
+}
+
+
+/* =========================================================
+   TEXTO
+   ========================================================= */
+
+.wa-text {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 100%;
+
+  transform:
+    translate(-50%, -50%)
+    scale(.75);
+
+  opacity: 0;
+  visibility: hidden;
+
+  color: #fff;
+
+  text-align: center;
+
+  font-family: "Space Grotesk", sans-serif;
+
+  font-size: 8px;
+  font-weight: 700;
+
+  line-height: 1.25;
+
+  text-shadow:
+    0 1px 3px rgba(0,80,45,.55);
+
+  animation: wa-message 8s infinite ease-in-out;
+
+  z-index: 5;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   INFLADO DESDE LA COLITA
+   ========================================================= */
+
+@keyframes wa-inflate {
+
+  /*
+   * 0–55%
+   * Icono visible en tamaño normal (reposo).
+   */
+
+  0%,
+  55% {
+    transform:
+      translate(-50%, -50%)
+      scale(1);
+
+    opacity: 1;
   }
-  @keyframes wa-text-cycle{
-    0%,62%{opacity:0;visibility:hidden}
-    66%,86%{opacity:1;visibility:visible}
-    92%,100%{opacity:0;visibility:hidden}
+
+
+  /*
+   * Comienza a inflarse.
+   */
+
+  58% {
+    transform:
+      translate(-50%, -50%)
+      scale(1.08);
   }
-  #top{right:18px;bottom:100px}
+
+
+  62% {
+    transform:
+      translate(-50%, -50%)
+      scale(1.20);
+  }
+
+
+  /*
+   * Casi en el borde.
+   */
+
+  68% {
+    transform:
+      translate(-50%, -50%)
+      scale(1.44, 1.32);
+  }
+
+
+  /*
+   * Toca el borde.
+   */
+
+  70% {
+    transform:
+      translate(-50%, -50%)
+      scale(1.58, 1.22);
+  }
+
+
+  /*
+   * 💥 REVIENTA justo antes de tocar el borde.
+   */
+
+  71% {
+    transform:
+      translate(-50%, -50%)
+      scale(1.72);
+
+    opacity: 0;
+  }
+
+
+  /*
+   * Desaparecido mientras se lee el texto.
+   */
+
+  71%,
+  86% {
+    opacity: 0;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.72);
+  }
+
+
+  /*
+   * Regresa oculto al tamaño normal
+   * y aparece en fade.
+   */
+
+  88% {
+    opacity: 0;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1);
+  }
+
+
+  90%,
+  100% {
+    opacity: 1;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1);
+  }
+}
+
+
+/* =========================================================
+   EXPLOSIÓN
+   ========================================================= */
+
+@keyframes wa-pop {
+
+  /*
+   * Sin explosión
+   */
+
+  0%,
+  69% {
+    opacity: 0;
+
+    transform:
+      translate(-50%, -50%)
+      scale(.35);
+  }
+
+
+  /*
+   * Sale el anillo justo
+   * cuando el globo revienta (71%).
+   */
+
+  72% {
+    opacity: .9;
+
+    transform:
+      translate(-50%, -50%)
+      scale(.9);
+  }
+
+
+  76% {
+    opacity: 0;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.8);
+  }
+
+
+  100% {
+    opacity: 0;
+  }
+}
+
+
+/* =========================================================
+   TEXTO
+   ========================================================= */
+
+@keyframes wa-message {
+
+  /*
+   * Oculto hasta el reventón (71%).
+   * Sin scale: solo fade, para que no
+   * parezca una segunda "inflada".
+   */
+
+  0%,
+  70% {
+    opacity: 0;
+    visibility: hidden;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1);
+  }
+
+
+  /*
+   * Aparece EN EL MISMO INSTANTE
+   * del pop. Sin espacio en verde.
+   */
+
+  71% {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1);
+  }
+
+
+  /*
+   * Texto legible.
+   */
+
+  73%,
+  88% {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1);
+  }
+
+
+  /*
+   * Desaparece suavemente.
+   */
+
+  90% {
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1);
+  }
+
+
+  100% {
+    opacity: 0;
+
+    visibility: hidden;
+  }
+}
+
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+.wa-fab:hover {
+  transform: translateY(-4px) scale(1.04);
+
+  box-shadow:
+    0 16px 42px rgba(0,180,99,.60),
+    inset 0 2px 8px rgba(255,255,255,.22);
+}
+
+
+/* =========================================================
+   ACCESIBILIDAD
+   ========================================================= */
+
+.wa-fab:focus-visible {
+  outline: none;
+
+  box-shadow:
+    0 0 0 4px rgba(255,255,255,.95),
+    0 0 0 7px rgba(0,179,99,.55),
+    0 14px 38px rgba(0,180,99,.45);
+}
+
+
+/* =========================================================
+   BOTÓN VOLVER ARRIBA (sobre el FAB)
+   ========================================================= */
+
+#top {
+  right: 22px;
+  bottom: 120px;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  .wa-fab {
+    width: 72px;
+    height: 72px;
+
+    right: 16px;
+    bottom: 16px;
+  }
+
+  .wa-balloon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .wa-text {
+    font-size: 7px;
+  }
+
+  .wa-ring {
+    width: 52px;
+    height: 52px;
+  }
+
+  #top {
+    right: 18px;
+    bottom: 100px;
+  }
+}
+
+
+/* =========================================================
+   REDUCIR MOVIMIENTO
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .wa-balloon,
+  .wa-ring,
+  .wa-text {
+    animation: none;
+  }
+
+  .wa-balloon {
+    opacity: 1;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1);
+  }
+
+  .wa-text {
+    opacity: 0;
+    visibility: hidden;
+  }
 }

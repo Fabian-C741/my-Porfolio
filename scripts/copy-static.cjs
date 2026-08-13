@@ -24,6 +24,10 @@ function copyDir(name) {
 
 copyFile('index.html');
 copyFile('script.js');
+copyFile('favicon.svg');
+copyFile('favicon-32x32.png');
+copyFile('favicon-192x192.png');
+copyFile('apple-touch-icon.png');
 
 const cv = fs.readdirSync(root).find(f => /^CV-.+\.pdf$/i.test(f));
 if (cv) copyFile(cv);
