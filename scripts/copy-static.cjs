@@ -28,4 +28,4 @@ copyFile('script.js');
 const cv = fs.readdirSync(root).find(f => /^CV-.+\.pdf$/i.test(f));
 if (cv) copyFile(cv);
 
-for (const d of ['assets', 'workers']) copyDir(d);
+for (const d of ['assets', 'workers', 'docs']) copyDir(d);

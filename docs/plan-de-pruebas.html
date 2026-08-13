@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Plan de Pruebas — Fabián Cáceres</title>
+<style>
+  @page{size:A4;margin:18mm 16mm}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',Arial,sans-serif;color:#1d2430;font-size:11.5px;line-height:1.5}
+  .header{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #00b463;padding-bottom:10px;margin-bottom:16px}
+  .header .brand{font-size:20px;font-weight:700;color:#00b463;letter-spacing:.5px}
+  .header .meta{font-size:11px;color:#5a6472;text-align:right}
+  h1{font-size:26px;color:#11161d;margin-bottom:4px}
+  h2{font-size:15px;color:#00b463;margin:20px 0 8px;text-transform:uppercase;letter-spacing:1px}
+  h3{font-size:12.5px;color:#11161d;margin:12px 0 4px}
+  p{margin-bottom:8px}
+  ul{margin:0 0 10px 18px}
+  li{margin-bottom:2px}
+  table{width:100%;border-collapse:collapse;margin:8px 0;font-size:10.5px}
+  th,td{border:1px solid #cdd4de;padding:6px 7px;text-align:left;vertical-align:top}
+  th{background:#eaf6ef;color:#0f6b41;font-weight:600}
+  tr:nth-child(even) td{background:#f7faf8}
+  .tag{display:inline-block;background:#00b463;color:#fff;font-size:10px;padding:2px 8px;border-radius:10px;margin-right:4px}
+  .muted{color:#6a7480;font-size:10px}
+  .criteria td{background:#fff}
+  .note{background:#fff8e6;border-left:3px solid #e0a800;padding:8px 10px;font-size:10.5px;margin:10px 0}
+  .footer{margin-top:24px;border-top:1px solid #dfe5ec;padding-top:8px;font-size:9.5px;color:#8a93a1}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">FABIÁN CÁCERES</div>
+  <div class="meta">
+    QA / Software Testing<br>
+    Portfolio · Documentación de pruebas<br>
+    Agosto 2026
+  </div>
+</div>
+
+<h1>Plan de Pruebas</h1>
+<p class="muted">Web apps probadas: Alme Cosmetología (sistema de reservas) y Mar Makeup (sitio comercial).</p>
+
+<h2>1. Objetivo</h2>
+<p>Validar la funcionalidad principal, la calidad visual y la experiencia responsive de dos aplicaciones web reales, ejecutando casos de prueba funcionales que permitan detectar defectos y documentar evidencias. El presente plan define el alcance, los criterios y la estrategia de prueba.</p>
+
+<h2>2. Aplicaciones bajo prueba</h2>
+<table>
+  <tr><th>App</th><th>Tipo</th><th>URL pública</th><th>Repositorio</th></tr>
+  <tr>
+    <td><b>Alme Cosmetología</b></td>
+    <td>Web app de reservas (servicios + agenda + admin)</td>
+    <td>alme-cosmetologia-integral.vercel.app</td>
+    <td>github.com/Fabian-C741/app-de-reservas</td>
+  </tr>
+  <tr>
+    <td><b>Mar Makeup</b></td>
+    <td>Sitio comercial + catálogo con contacto por WhatsApp</td>
+    <td>mar-makeup.vercel.app</td>
+    <td>github.com/Fabian-C741/Proyect-CRM</td>
+  </tr>
+</table>
+
+<h2>3. Alcance (dentro de alcance)</h2>
+<ul>
+  <li>Flujo completo de reserva en Alme: selección de servicio, día y horario, y confirmación.</li>
+  <li>Navegación interna y enlaces (navbar, footer, anclas).</li>
+  <li>Pantalla de servicios y listado de productos/precios.</li>
+  <li>Validaciones de formulario (campos obligatorios, formato de email).</li>
+  <li>Responsive: layout en escritorio y mobile (diseño fluido).</li>
+  <li>Enlaces de contacto externos en Mar Makeup (WhatsApp con mensaje pre-cargado).</li>
+</ul>
+
+<h2>4. Fuera de alcance / no expuesto</h2>
+<p>Por privacidad y seguridad, <b>no se documentan ni exponen</b>: credenciales de acceso al panel de administración, datos internos, URLs de storage/API privadas, ni información de terceros. Cualquier acceso restringido se marca como <span class="tag">ACCESO RESTRINGIDO</span>.</p>
+
+<h2>5. Ambiente y herramientas</h2>
+<ul>
+  <li>Navegador: Google Chrome (escritorio); emulación de viewport para mobile.</li>
+  <li>Plataforma: aplicaciones desplegadas en Vercel (entorno de producción).</li>
+  <li>Herramientas: extensión de modo desarrollador del navegador, capturas de pantalla.</li>
+</ul>
+
+<h2>6. Criterios de entrada</h2>
+<ul>
+  <li>Las aplicaciones están desplegadas y accesibles desde el navegador.</li>
+  <li>Las funcionalidades mínimas de reserva y navegación implementadas.</li>
+</ul>
+
+<h2>7. Criterios de salida</h2>
+<ul>
+  <li>Se ejecutó el 100% de los casos de prueba planificados.</li>
+  <li>Los defectos encontrados quedaron documentados con evidencia y estado.</li>
+</ul>
+
+<h2>8. Estrategia</h2>
+<ul>
+  <li><b>Pruebas funcionales</b>: flujos de usuario principales (happy path y caminos alternativos).</li>
+  <li><b>Pruebas de validación</b>: manejo de entradas vacías o inválidas.</li>
+  <li><b>Pruebas de enlaces</b>: navegación interna y enlaces externos.</li>
+  <li><b>Pruebas responsive</b>: comprobación visual en escritorio y mobile.</li>
+</ul>
+
+<div class="note"><b>Nota:</b> los casos de prueba con casillas de "Resultado" y "Estado" están preparados para ejecución manual; quien ejecuta marca <b>PASA</b> o <b>FALLA</b> y adjunta la evidencia correspondiente.</div>
+
+<h3>Documentos asociados</h3>
+<ul>
+  <li>Casos de prueba — Alme Cosmetología (casos-de-prueba-alme.pdf)</li>
+  <li>Casos de prueba — Mar Makeup (casos-de-prueba-mar-makeup.pdf)</li>
+</ul>
+
+<div class="footer">
+  Fabián Cáceres — QA / Software Testing · Portfolio 2026 · Documento generado con fines demostrativos sobre entornos públicos.
+</div>
+
+</body>
+</html>

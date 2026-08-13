@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Casos de Prueba — Alme Cosmetología</title>
+<style>
+  @page{size:A4;margin:15mm 13mm}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',Arial,sans-serif;color:#1d2430;font-size:10.5px;line-height:1.45}
+  .header{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #00b463;padding-bottom:8px;margin-bottom:12px}
+  .header .brand{font-size:18px;font-weight:700;color:#00b463;letter-spacing:.5px}
+  .header .meta{font-size:10px;color:#5a6472;text-align:right}
+  h1{font-size:22px;color:#11161d;margin-bottom:2px}
+  .sub{font-size:10.5px;color:#5a6472;margin-bottom:10px}
+  h2{font-size:12.5px;color:#00b463;margin:14px 0 6px;text-transform:uppercase;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;margin:6px 0 2px;font-size:9.5px}
+  th,td{border:1px solid #cdd4de;padding:5px 6px;text-align:left;vertical-align:top}
+  th{background:#eaf6ef;color:#0f6b41;font-weight:600}
+  .id{font-weight:700;color:#0f6b41;white-space:nowrap}
+  .estado{width:60px;text-align:center}
+  .mod{white-space:nowrap;font-weight:600;color:#11161d}
+  img.shot{width:100%;max-width:520px;border:1px solid #dfe5ec;border-radius:4px;margin:4px 0 8px}
+  .figcaption{font-size:9px;color:#8a93a1;margin-bottom:10px}
+  .tag{background:#00b463;color:#fff;font-size:8.5px;padding:1px 6px;border-radius:8px}
+  .note{background:#fff8e6;border-left:3px solid #e0a800;padding:6px 9px;font-size:9.5px;margin:8px 0}
+  .footer{margin-top:16px;border-top:1px solid #dfe5ec;padding-top:6px;font-size:9px;color:#8a93a1}
+  .pagebreak{page-break-before:always}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">FABIÁN CÁCERES</div>
+  <div class="meta">QA / Software Testing · Portfolio 2026<br>Casos de Prueba — Alme Cosmetología</div>
+</div>
+
+<h1>Casos de Prueba — Alme Cosmetología</h1>
+<p class="sub">Web app de reservas · <b>URL:</b> alme-cosmetologia-integral.vercel.app · <b>Repo:</b> github.com/Fabian-C741/app-de-reservas</p>
+
+<div class="note">
+Se ejecutan manualmente los casos: quien ejecuta marca <b>PASA</b> / <b>FALLA</b> en la columna "Estado" y deja comentarios si corresponde. No se exponen credenciales ni accesos restringidos.
+</div>
+
+<h2>Módulo 01 · Navegación general</h2>
+<table>
+  <tr><th>ID</th><th>Módulo</th><th>Pasos</th><th>Resultado esperado</th><th>Resultado</th><th class="estado">Estado</th></tr>
+  <tr><td class="id">NAV-01</td><td class="mod">Navbar</td><td>1) Abrir la home. 2) Clic en "Inicio". 3) Clic en "Servicios". 4) Clic en "Reservar".</td><td>Cada enlace lleva a la sección/página correspondiente sin romper el layout.</td><td></td><td class="estado"></td></tr>
+  <tr><td class="id">NAV-02</td><td class="mod">Navbar</td><td>1) Clic en el logo "Alme".</td><td>Redirige a la home.</td><td></td><td class="estado"></td></tr>
+  <tr><td class="id">NAV-03</td><td class="mod">Accesibilidad</td><td>1) Pasar mouse por cada item del menú. 2) Verificar contraste y legibilidad en vista escritorio y mobile.</td><td>Items legibles, active/focus visible.</td><td></td><td class="estado"></td></tr>
+</table>
+
+<img class="shot" src="img/alme-home.png" alt="Captura home Alme">
+<div class="figcaption">Evidencia — Home (captura de muestra del entorno público).</div>
+
+<h2>Módulo 02 · Servicios</h2>
+<table>
+  <tr><th>ID</th><th>Módulo</th><th>Pasos</th><th>Resultado esperado</th><th>Resultado</th><th class="estado">Estado</th></tr>
+  <tr><td class="id">SVC-01</td><td class="mod">Servicios</td><td>1) Ir a la sección "Servicios" de la home. 2) Verificar que muestre listado.</td><td>Los servicios se cargan y se ven en vista previa con título y botón.</td><td></td><td class="estado"></td></tr>
+  <tr><td class="id">SVC-02</td><td class="mod">Servicios</td><td>1) Clic en "Ver todos". 2) Revisar que abra la página de servicios.</td><td>La página de servicios muestra el catálogo completo con filtro disponible.</td><td></td><td class="estado"></td></tr>
+  <tr><td class="id">SVC-03</td><td class="mod">Servicios</td><td>1) En la página de servicios, usar el filtro "Todas" y cambiar de categoría.</td><td>El filtro actualiza el listado correctamente.</td><td></td><td class="estado"></td></tr>
+</table>
+
+<img class="shot" src="img/alme-servicios.png" alt="Captura página servicios Alme">
+<div class="figcaption">Evidencia — Página de servicios (captura de muestra).</div>
+
+<h2>Módulo 03 · Reserva (flujo principal)</h2>
+<table>
+  <tr><th>ID</th><th>Módulo</th><th>Pasos</th><th>Resultado esperado</th><th>Resultado</th><th class="estado">Estado</th></tr>
+  <tr><td class="id">RES-01</td><td class="mod">Reserva</td><td>1) Clic en "Reservar mi cita" o "Reservar" del navbar. 2) Seleccionar un servicio. 3) Elegir día y horario. 4) Confirmar.</td><td>La reserva se crea y se muestra el mensaje de confirmación con los datos elegidos.</td><td></td><td class="estado"></td></tr>
+  <tr><td class="id">RES-02</td><td class="mod">Reserva</td><td>1) Entrar a reserva. 2) Intentar confirmar sin seleccionar servicio.</td><td>El sistema bloquea el envío y muestra mensaje indicando que el servicio es obligatorio.</td><td></td><td class="estado"></td></tr>
+  <tr><td class="id">RES-03</td><td class="mod">Reserva</td><td>1) Seleccionar servicio. 2) Intentar elegir una fecha pasada.</td><td>Las fechas pasadas no son seleccionables o se valida con mensaje.</td><td></td><td class="estado"></td></tr>
+  <tr><td class="id">RES-04</td><td class="mod">Reserva</td><td>1) Elegir servicio y fecha. 2) Intentar un horario ya ocupado.</td><td>El horario ocupado no se ofrece o se avisa antes de confirmar.</td><td></td><td class="estado"></td></tr>
+  <tr><td class="id">RES-05</td><td class="mod">Reserva</td><td>1) Completar nombre y email. 2) Ingresar email inválido (ej: "abc@").</td><td>Se rechaza con mensaje de formato de email.</td><td></td><td class="estado"></td></tr>
+  <tr><td class="id">RES-06</td><td class="mod">Reserva</td><td>1) Dejar campos obligatorios vacíos y confirmar.</td><td>Se indica qué campos faltan, sin permitir envío.</td><td></td><td class="estado"></td></tr>
+  <tr><td class="id">RES-07</td><td class="mod">Reserva</td><td>1) Clic rápido/doble clic sobre "Confirmar".</td><td>Solo se genera una reserva (sin duplicados).</td><td></td><td class="estado"></td></tr>
+  <tr><td class="id">RES-08</td><td class="mod">Reserva</td><td>1) Completar reserva correctamente.</td><td>El botón muestra estado "cargando"/deshabilitado durante el proceso y desbloquea al terminar.</td><td></td><td class="estado"></td></tr>
+</table>
+
+<img class="shot" src="img/alme-reservar.png" alt="Captura página reserva Alme">
+<div class="figcaption">Evidencia — Flujo de reserva (captura de muestra).</div>
+
+<h2>Módulo 04 · Panel de administración (no expuesto)</h2>
+<table>
+  <tr><th>ID</th><th>Módulo</th><th>Pasos</th><th>Resultado esperado</th><th>Resultado</th><th class="estado">Estado</th></tr>
+  <tr><td class="id">ADM-01</td><td class="mod">Admin</td><td>1) Acceder a la ruta /admin.</td><td>Requiere autenticación; sin credenciales no se accede a datos internos. <span class="tag">ACCESO RESTRINGIDO</span></td><td></td><td class="estado"></td></tr>
+</table>
+
+<h2 class="pagebreak">Módulo 05 · Responsive</h2>
+<table>
+  <tr><th>ID</th><th>Módulo</th><th>Pasos</th><th>Resultado esperado</th><th>Resultado</th><th class="estado">Estado</th></tr>
+  <tr><td class="id">RSP-01</td><td class="mod">Responsive</td><td>1) Probar en viewport mobile (360–430px). 2) Revisar navbar, secciones y botones.</td><td>No hay desbordes horizontales; menú colapsa correctamente y botones tocables.</td><td></td><td class="estado"></td></tr>
+  <tr><td class="id">RSP-02</td><td class="mod">Responsive</td><td>1) Probar en tablet (~768px). 2) Revisar grid de servicios.</td><td>Grid se adapta sin elementos superpuestos.</td><td></td><td class="estado"></td></tr>
+  <tr><td class="id">RSP-03</td><td class="mod">Responsive</td><td>1) Probar en escritorio (1280px+). 2) Revisar footer y máximo de ancho.</td><td>El contenido se centra y luce equilibrado.</td><td></td><td class="estado"></td></tr>
+  <tr><td class="id">RSP-04</td><td class="mod">Responsive</td><td>1) Probar zoom del navegador 200% en vista escritorio.</td><td>El texto no se corta ni quedan elementos inaccesibles.</td><td></td><td class="estado"></td></tr>
+</table>
+
+<h2>Módulo 06 · Footer y contactos</h2>
+<table>
+  <tr><th>ID</th><th>Módulo</th><th>Pasos</th><th>Resultado esperado</th><th>Resultado</th><th class="estado">Estado</th></tr>
+  <tr><td class="id">FTR-01</td><td class="mod">Footer</td><td>1) Revisar enlaces del footer (navegación y contacto).</td><td>Los enlaces son correctos y abren el destino esperado.</td><td></td><td class="estado"></td></tr>
+  <tr><td class="id">FTR-02</td><td class="mod">Footer</td><td>1) Verificar propiedad del año y textos legales en el footer.</td><td>Datos de copyright correctos.</td><td></td><td class="estado"></td></tr>
+</table>
+
+<div class="footer">
+  Fabián Cáceres — QA / Software Testing · Portfolio 2026 · Alme Cosmetología — Documento demostrativo sobre entorno público. Sin datos restringidos.
+</div>
+
+</body>
+</html>

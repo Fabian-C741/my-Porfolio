@@ -1,91 +1,107 @@
-/* Boton flotante de WhatsApp — siempre visible, ciclo animado */
+/* Boton flotante de WhatsApp — estilo NBCH: inflado tipo globo y texto dentro del circulo */
 .wa-fab{
   position:fixed;
-  right:24px;
-  bottom:24px;
-  width:58px;
-  height:58px;
+  right:22px;
+  bottom:22px;
+  width:84px;
+  height:84px;
   border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  background:radial-gradient(circle at 30% 25%,#00e087,#00b463 70%);
+  border:2px solid #b9f7d9;
+  box-shadow:0 10px 32px rgba(0,180,99,.45);
+  text-decoration:none;
   z-index:45;
-  background:radial-gradient(circle at 30% 25%,#2bd465,#1faa4d 70%);
-  border:1px solid rgba(255,255,255,.22);
-  box-shadow:0 8px 28px rgba(37,211,102,.4),inset 0 1px 0 rgba(255,255,255,.25);
+  overflow:hidden;
+  display:block;
   transition:transform .3s ease,box-shadow .3s ease;
   cursor:pointer;
 }
 .wa-fab:hover{
-  transform:translateY(-3px) scale(1.05);
-  box-shadow:0 14px 40px rgba(37,211,102,.55),inset 0 1px 0 rgba(255,255,255,.25);
+  transform:translateY(-3px);
+  box-shadow:0 14px 44px rgba(0,180,99,.6);
 }
 .wa-icon{
-  width:34px;
-  height:34px;
-  transform-origin:center;
-  animation:wa-cycle 7s ease-in-out infinite;
+  position:absolute;
+  left:50%;
+  top:42%;
+  width:56px;
+  height:56px;
+  transform:translate(-50%,-50%);
+  animation:wa-icon-cycle 7s ease-in-out infinite;
 }
 .wa-ring{
   position:absolute;
-  inset:-6px;
+  inset:-8px;
   border-radius:50%;
-  border:2px solid rgba(37,211,102,.45);
+  border:2px solid rgba(0,180,99,.45);
   animation:wa-ring 7s ease-out infinite;
   pointer-events:none;
 }
-.wa-bubble{
+.wa-text{
   position:absolute;
-  right:calc(100% + 14px);
-  top:50%;
-  transform:translate(10px,-50%);
+  left:50%;
+  top:59%;
+  transform:translateX(-50%);
   white-space:nowrap;
-  font:500 13px "Space Grotesk",sans-serif;
-  letter-spacing:.2px;
-  color:#0b120d;
-  background:#eafff2;
-  border:1px solid rgba(37,211,102,.35);
-  border-radius:8px;
-  padding:8px 14px;
+  font:600 7.5px "Space Grotesk",sans-serif;
+  line-height:1.2;
+  letter-spacing:.1px;
+  color:#f2fff8;
+  text-align:center;
+  text-shadow:0 1px 2px rgba(0,80,45,.45);
   opacity:0;
   visibility:hidden;
+  animation:wa-text-cycle 7s ease-in-out infinite;
   pointer-events:none;
-  box-shadow:0 8px 24px rgba(0,0,0,.35);
-  transition:opacity .3s ease,transform .3s ease,visibility .3s ease;
 }
-.wa-bubble::after{
-  content:"";
-  position:absolute;
-  right:-6px;
-  top:50%;
-  transform:translateY(-50%);
-  border:6px solid transparent;
-  border-left-color:#eafff2;
-}
-.wa-fab:hover .wa-bubble{
+.wa-fab:hover .wa-text{
   opacity:1;
   visibility:visible;
-  transform:translate(0,-50%);
+  animation:none;
 }
 
-@keyframes wa-cycle{
-  0%,72%{transform:scale(1)}
-  78%,88%{transform:scale(.62)}
-  94%,100%{transform:scale(1)}
+@keyframes wa-icon-cycle{
+  0%,30%{transform:translate(-50%,-50%) scale(1.22)}
+  34%,38%{transform:translate(-50%,-50%) scale(.3)}
+  44%{transform:translate(-50%,-46%) scale(.34);transform-origin:50% 100%}
+  56%{transform:translate(-50%,-50%) scale(1.45);transform-origin:50% 100%}
+  62%{transform:translate(-50%,-50%) scale(1.45);transform-origin:50% 50%}
+  66%,86%{transform:translate(-50%,-50%) scale(.32)}
+  94%,100%{transform:translate(-50%,-50%) scale(1.22)}
 }
 @keyframes wa-ring{
-  0%{transform:scale(.9);opacity:.8}
-  72%{transform:scale(.9);opacity:0}
-  78%,94%{transform:scale(1.35);opacity:0}
-  100%{transform:scale(1.35);opacity:0}
+  0%,30%{transform:scale(.96);opacity:.6}
+  36%{transform:scale(.96);opacity:0}
+  60%,84%{transform:scale(1.22);opacity:0}
+  100%{transform:scale(1.22);opacity:0}
+}
+@keyframes wa-text-cycle{
+  0%,62%{opacity:0;visibility:hidden}
+  66%,86%{opacity:1;visibility:visible}
+  92%,100%{opacity:0;visibility:hidden}
 }
 
 /* Mover el boton "volver arriba" por encima del FAB */
-#top{right:25px;bottom:92px}
+#top{right:25px;bottom:120px}
 
 @media (max-width:600px){
-  .wa-fab{width:50px;height:50px;right:18px;bottom:18px}
-  .wa-icon{width:29px;height:29px}
-  .wa-bubble{font-size:12px;padding:6px 11px;right:calc(100% + 10px)}
-  #top{right:18px;bottom:82px}
+  .wa-fab{width:72px;height:72px;right:16px;bottom:16px}
+  .wa-icon{width:50px;height:50px;top:41%}
+  .wa-text{font-size:7px;top:57%}
+  .wa-ring{inset:-6px}
+  @keyframes wa-icon-cycle{
+    0%,30%{transform:translate(-50%,-50%) scale(1.22)}
+    34%,38%{transform:translate(-50%,-50%) scale(.3)}
+    44%{transform:translate(-50%,-46%) scale(.34);transform-origin:50% 100%}
+    56%{transform:translate(-50%,-50%) scale(1.45);transform-origin:50% 100%}
+    62%{transform:translate(-50%,-50%) scale(1.45);transform-origin:50% 50%}
+    66%,86%{transform:translate(-50%,-50%) scale(.32)}
+    94%,100%{transform:translate(-50%,-50%) scale(1.22)}
+  }
+  @keyframes wa-text-cycle{
+    0%,62%{opacity:0;visibility:hidden}
+    66%,86%{opacity:1;visibility:visible}
+    92%,100%{opacity:0;visibility:hidden}
+  }
+  #top{right:18px;bottom:100px}
 }
