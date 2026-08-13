@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Casos de Prueba — SuperNmente</title>
+<style>
+  @page{size:A4;margin:15mm 13mm}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',Arial,sans-serif;color:#1d2430;font-size:10.5px;line-height:1.45}
+  .header{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #7c5cff;padding-bottom:8px;margin-bottom:12px}
+  .header .brand{font-size:18px;font-weight:700;color:#7c5cff;letter-spacing:.5px}
+  .header .meta{font-size:10px;color:#5a6472;text-align:right}
+  h1{font-size:22px;color:#11161d;margin-bottom:2px}
+  .sub{font-size:10.5px;color:#5a6472;margin-bottom:10px}
+  h2{font-size:12.5px;color:#7c5cff;margin:14px 0 6px;text-transform:uppercase;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;margin:6px 0 2px;font-size:9.5px}
+  th,td{border:1px solid #d4c9ff;padding:5px 6px;text-align:left;vertical-align:top}
+  th{background:#f0ecff;color:#4f31c9;font-weight:600}
+  .id{font-weight:700;color:#4f31c9;white-space:nowrap}
+  .estado{width:60px;text-align:center}
+  .mod{white-space:nowrap;font-weight:600;color:#11161d}
+  img.shot{width:100%;max-width:520px;border:1px solid #dfe5ec;border-radius:4px;margin:4px 0 8px}
+  .figcaption{font-size:9px;color:#8a93a1;margin-bottom:10px}
+  .tag{background:#7c5cff;color:#fff;font-size:8.5px;padding:1px 6px;border-radius:8px}
+  .note{background:#fff8e6;border-left:3px solid #e0a800;padding:6px 9px;font-size:9.5px;margin:8px 0}
+  .footer{margin-top:16px;border-top:1px solid #dfe5ec;padding-top:6px;font-size:9px;color:#8a93a1}
+  .pagebreak{page-break-before:always}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">FABIÁN CÁCERES</div>
+  <div class="meta">QA / Software Testing · Portfolio 2026<br>Casos de Prueba — SuperNmente</div>
+</div>
+
+<h1>Casos de Prueba — SuperNmente</h1>
+<p class="sub">Plataforma educativa de juego · <b>URL:</b> supernmente.pages.dev · <b>Repo:</b> github.com/Fabian-C741/supernamente-juego <span class="tag">PRIVADO</span></p>
+
+<div class="note">
+Se ejecutan manualmente los casos: quien ejecuta marca <b>PASA</b> / <b>FALLA</b> en la columna "Estado" y deja comentarios si corresponde. El repositorio es privado; la prueba se realiza sobre el sitio público. El PIN de guardado de progreso no se expone en este documento.
+</div>
+
+<h2>Módulo 01 · Carga y alta de jugador</h2>
+<table>
+  <tr><th>ID</th><th>Módulo</th><th>Pasos</th><th>Resultado esperado</th><th>Resultado</th><th class="estado">Estado</th></tr>
+  <tr><td class="id">ALT-01</td><td class="mod">Carga</td><td>1) Abrir supernmente.pages.dev.</td><td>La plataforma carga sin errores; muestra el selector de jugador (nombre, grado, avatar).</td><td></td><td class="estado"></td></tr>
+  <tr><td class="id">ALT-02</td><td class="mod">Alta jugador</td><td>1) Escribir el nombre. 2) Elegir grado. 3) Elegir avatar. 4) Clic en "¡Empezar a jugar!".</td><td>El jugador inicia la sesión de juego y pasa a la selección de temas.</td><td></td><td class="estado"></td></tr>
+  <tr><td class="id">ALT-03</td><td class="mod">Alta jugador</td><td>1) Intentar empezar sin escribir nombre.</td><td>El sistema valida el nombre y no deja avanzar vacío.</td><td></td><td class="estado"></td></tr>
+  <tr><td class="id">ALT-04</td><td class="mod">Grado</td><td>1) Probar distintos grados (Preescolar a Universitario).</td><td>El contenido/dificultad se ajusta según el grado elegido.</td><td></td><td class="estado"></td></tr>
+</table>
+
+<img class="shot" src="img/supernmente-home.png" alt="Captura SuperNmente">
+<div class="figcaption">Evidencia — Pantalla de inicio / juego (captura de muestra del entorno público).</div>
+
+<h2>Módulo 02 · Selección de temas y áreas</h2>
+<table>
+  <tr><th>ID</th><th>Módulo</th><th>Pasos</th><th>Resultado esperado</th><th>Resultado</th><th class="estado">Estado</th></tr>
+  <tr><td class="id">TMA-01</td><td class="mod">Temas</td><td>1) En "Jugando con", tocar un tema para agregarlo a la lista.</td><td>El tema se agrega a la lista "Tus temas:".</td><td></td><td class="estado"></td></tr>
+  <tr><td class="id">TMA-02</td><td class="mod">Temas</td><td>1) Tocar "¡A jugar!" sin haber elegido ningún tema.</td><td>Se muestra la advertencia "Elegí al menos un tema para empezar".</td><td></td><td class="estado"></td></tr>
+  <tr><td class="id">TMA-03</td><td class="mod">Áreas</td><td>1) Elegir una o más áreas favoritas.</td><td>Solo salen preguntas de las áreas elegidas; con "General" se juega variado.</td><td></td><td class="estado"></td></tr>
+</table>
+
+<h2>Módulo 03 · Mecánica de juego y niveles</h2>
+<table>
+  <tr><th>ID</th><th>Módulo</th><th>Pasos</th><th>Resultado esperado</th><th>Resultado</th><th class="estado">Estado</th></tr>
+  <tr><td class="id">JUG-01</td><td class="mod">Juego</td><td>1) Responder correctamente una pregunta en un nivel.</td><td>La respuesta se registra y se suma la/s estrella/s correspondiente/s.</td><td></td><td class="estado"></td></tr>
+  <tr><td class="id">JUG-02</td><td class="mod">Juego</td><td>1) Responder incorrectamente.</td><td>La plataforma permite reintentar y muestra el consejo para repasar.</td><td></td><td class="estado"></td></tr>
+  <tr><td class="id">JUG-03</td><td class="mod">Niveles</td><td>1) Intentar avanzar al nivel 2 sin completar las estrellas del nivel 1.</td><td>El avance queda bloqueado y se indica cuántas estrellas faltan.</td><td></td><td class="estado"></td></tr>
+  <tr><td class="id">JUG-04</td><td class="mod">Niveles</td><td>1) Completar un nivel reuniendo todas las estrellas.</td><td>Se desbloquea el nivel siguiente y se muestra el conteo de estrellas.</td><td></td><td class="estado"></td></tr>
+  <tr><td class="id">JUG-05</td><td class="mod">Contador</td><td>1) Jugar y revisar el contador "palabras leídas hoy" y las estrellas.</td><td>Los contadores se actualizan tras cada partida.</td><td></td><td class="estado"></td></tr>
+  <tr><td class="id">JUG-06</td><td class="mod">Mini-juego</td><td>1) Jugar "Gusano Viajero" (atrapar estrellas).</td><td>El mini-juego funciona y las estrellas atrapadas se suman.</td><td></td><td class="estado"></td></tr>
+</table>
+
+<h2 class="pagebreak">Módulo 04 · Guardado de progreso</h2>
+<table>
+  <tr><th>ID</th><th>Módulo</th><th>Pasos</th><th>Resultado esperado</th><th>Resultado</th><th class="estado">Estado</th></tr>
+  <tr><td class="id">PRG-01</td><td class="mod">PIN</td><td>1) Elegir "guardar progreso" e ingresar el PIN del docente.</td><td>El progreso se guarda y al volver a entrar con el mismo nombre + PIN se recupera.</td><td></td><td class="estado"></td></tr>
+  <tr><td class="id">PRG-02</td><td class="mod">PIN</td><td>1) Ingresar un PIN incorrecto.</td><td>Se muestra "PIN incorrecto" y se permite reintentar.</td><td></td><td class="estado"></td></tr>
+  <tr><td class="id">PRG-03</td><td class="mod">PIN</td><td>1) Elegir "Jugar sin guardar progreso".</td><td>Se juega normalmente; el progreso no se persiste al salir.</td><td></td><td class="estado"></td></tr>
+  <tr><td class="id">PRG-04</td><td class="mod">Salir</td><td>1) Clic en "Salir" / "✕ Salir sin jugar".</td><td>Cierra la sesión de forma limpia sin perder datos del nombre elegido.</td><td></td><td class="estado"></td></tr>
+</table>
+
+<h2>Módulo 05 · Comentarios y feedback</h2>
+<table>
+  <tr><th>ID</th><th>Módulo</th><th>Pasos</th><th>Resultado esperado</th><th>Resultado</th><th class="estado">Estado</th></tr>
+  <tr><td class="id">FDB-01</td><td class="mod">Feedback</td><td>1) Abrir "Ayúdanos a mejorar" y completar "qué te gustó" / "qué te gustaría".</td><td>Se envía el comentario y se muestra "¡Gracias por tu opinión!".</td><td></td><td class="estado"></td></tr>
+  <tr><td class="id">FDB-02</td><td class="mod">Valoración</td><td>1) Al completar el nivel 5, elegir cantidad de estrellas y enviar.</td><td>La valoración se envía y el juego puede continuar.</td><td></td><td class="estado"></td></tr>
+</table>
+
+<h2>Módulo 06 · Responsive y visual</h2>
+<table>
+  <tr><th>ID</th><th>Módulo</th><th>Pasos</th><th>Resultado esperado</th><th>Resultado</th><th class="estado">Estado</th></tr>
+  <tr><td class="id">RSP-01</td><td class="mod">Responsive</td><td>1) Probar en mobile (360–430px). 2) Revisar selectores, botones y tablero.</td><td>Sin desbordes horizontales; botones tocables y textos legibles.</td><td></td><td class="estado"></td></tr>
+  <tr><td class="id">RSP-02</td><td class="mod">Responsive</td><td>1) Probar en tablet/escritorio.</td><td>El tablero y la barra de progreso se adaptan al ancho.</td><td></td><td class="estado"></td></tr>
+  <tr><td class="id">DST-01</td><td class="mod">Destello</td><td>1) Verificar que no haya texto ilegible o elementos superpuestos en el tablero.</td><td>La interfaz se ve limpia y coherente.</td><td></td><td class="estado"></td></tr>
+</table>
+
+<div class="footer">
+  Fabián Cáceres — QA / Software Testing · Portfolio 2026 · SuperNmente — Documento demostrativo sobre entorno público. PIN y repositorio privado no expuestos.
+</div>
+
+</body>
+</html>
