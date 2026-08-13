@@ -87,20 +87,15 @@
 
   transform:
     translate(-50%, -50%)
-    scale(.2);
-
-  transform-origin: 35% 88%;
-
-  animation: wa-inflate 8s infinite
-    cubic-bezier(.22,.61,.36,1);
+    scale(1);
 
   z-index: 3;
 }
 
 
-/* SVG */
+/* Lottie */
 
-.wa-icon {
+.wa-lottie {
   display: block;
 
   width: 100%;
@@ -177,119 +172,6 @@
   z-index: 5;
 
   pointer-events: none;
-}
-
-
-/* =========================================================
-   INFLADO DESDE LA COLITA
-   ========================================================= */
-
-@keyframes wa-inflate {
-
-  /*
-   * 0–55%
-   * Icono visible en tamaño normal (reposo).
-   */
-
-  0%,
-  55% {
-    transform:
-      translate(-50%, -50%)
-      scale(1);
-
-    opacity: 1;
-  }
-
-
-  /*
-   * Comienza a inflarse.
-   */
-
-  58% {
-    transform:
-      translate(-50%, -50%)
-      scale(1.08);
-  }
-
-
-  62% {
-    transform:
-      translate(-50%, -50%)
-      scale(1.20);
-  }
-
-
-  /*
-   * Casi en el borde.
-   */
-
-  68% {
-    transform:
-      translate(-50%, -50%)
-      scale(1.44, 1.32);
-  }
-
-
-  /*
-   * Toca el borde.
-   */
-
-  70% {
-    transform:
-      translate(-50%, -50%)
-      scale(1.58, 1.22);
-  }
-
-
-  /*
-   * 💥 REVIENTA justo antes de tocar el borde.
-   */
-
-  71% {
-    transform:
-      translate(-50%, -50%)
-      scale(1.72);
-
-    opacity: 0;
-  }
-
-
-  /*
-   * Desaparecido mientras se lee el texto.
-   */
-
-  71%,
-  86% {
-    opacity: 0;
-
-    transform:
-      translate(-50%, -50%)
-      scale(1.72);
-  }
-
-
-  /*
-   * Regresa oculto al tamaño normal
-   * y aparece en fade.
-   */
-
-  88% {
-    opacity: 0;
-
-    transform:
-      translate(-50%, -50%)
-      scale(1);
-  }
-
-
-  90%,
-  100% {
-    opacity: 1;
-
-    transform:
-      translate(-50%, -50%)
-      scale(1);
-  }
 }
 
 
