@@ -37,3 +37,36 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener("click",
  const target=document.querySelector(a.getAttribute("href"));
  if(target){e.preventDefault();target.scrollIntoView({behavior:"smooth"})}
 }));
+
+// WhatsApp label: efecto máquina de escribir en loop
+const waText=document.querySelector(".wa-label-text");
+if(waText){
+ const phrases=["Contáctame por WhatsApp","Respondo rápido","¿Hablamos?"];
+ const reduced=matchMedia("(prefers-reduced-motion: reduce)").matches;
+ if(reduced){
+   waText.textContent=phrases[0];
+ } else {
+   let pi=0,ci=0,deleting=false,timer;
+   (function type(){
+     const phrase=phrases[pi];
+     waText.textContent=phrase.slice(0,ci);
+     let delay=deleting?28:75;
+     if(!deleting&&ci===phrase.length){
+       delay=2200;
+       deleting=true;
+       waText.parentElement.classList.add("wa-label-typing");
+     } else if(deleting&&ci===0){
+       deleting=false;
+       pi=(pi+1)%phrases.length;
+       delay=350;
+       waText.parentElement.classList.remove("wa-label-typing");
+     } else {
+       ci+=deleting?-1:1;
+     }
+     timer=setTimeout(type,delay);
+   })();
+   const label=waText.parentElement;
+   label?.addEventListener("mouseenter",()=>clearTimeout(timer));
+   label?.addEventListener("mouseleave",()=>{timer=setTimeout(type,200)});
+ }
+}

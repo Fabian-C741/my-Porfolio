@@ -1,5 +1,8 @@
 /* =========================================================
-   WHATSAPP FAB — EFECTO GLOBO QUE SE INFLA Y REVIENTA
+   WHATSAPP FAB — BOTÓN FLOTANTE CON ANIMACIÓN LOTTIE
+   La animación (wa-lottie) es un badge WhatsApp completo
+   (teléfono blanco + disco verde) y ocupa todo el botón.
+   El fondo verde degradado queda como fallback momento de carga.
    ========================================================= */
 
 .wa-fab {
@@ -21,17 +24,16 @@
       #009c58 100%
     );
 
-  border: 2px solid #b9f7d9;
+  border: none;
 
   box-shadow:
-    0 10px 32px rgba(0, 180, 99, 0.45),
-    inset 0 2px 7px rgba(255,255,255,.18);
+    0 10px 32px rgba(0, 180, 99, 0.45);
 
   text-decoration: none;
 
   z-index: 45;
 
-  overflow: visible;
+  overflow: hidden;
 
   display: flex;
   align-items: center;
@@ -44,56 +46,131 @@
     box-shadow .3s ease;
 }
 
-
-/* =========================================================
-   BRILLO DEL BOTÓN
-   ========================================================= */
-
 .wa-fab::before {
   content: "";
-
-  position: absolute;
-
-  top: 8px;
-  left: 16px;
-
-  width: 28px;
-  height: 11px;
-
-  border-radius: 50%;
-
-  background: rgba(255,255,255,.20);
-
-  filter: blur(4px);
-
-  transform: rotate(-20deg);
-
-  pointer-events: none;
+  display: none;
 }
 
 
 /* =========================================================
-   CONTENEDOR DEL GLOBO
+   TEXTO JUNTO AL BOTÓN
+   ========================================================= */
+
+.wa-label {
+  position: fixed;
+  right: 118px;
+  bottom: 34px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 3px;
+
+  padding: 10px 16px;
+
+  border-radius: 14px;
+
+  background: rgba(6, 28, 20, 0.92);
+  border: 1px solid rgba(0, 180, 99, 0.35);
+
+  color: #fff;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+
+  line-height: 1.2;
+
+  white-space: nowrap;
+
+  box-shadow:
+    0 10px 30px rgba(0, 30, 20, 0.35);
+
+  z-index: 44;
+
+  cursor: pointer;
+
+  pointer-events: none;
+
+  transition: opacity .35s ease;
+
+  animation: wa-label-in .6s ease .9s both;
+}
+
+.wa-label-text {
+  font-weight: 400;
+}
+
+.wa-label-text::after {
+  content: "";
+
+  display: inline-block;
+
+  width: 7px;
+  height: 14px;
+
+  margin-left: 3px;
+
+  vertical-align: -2px;
+
+  background: #2be58f;
+
+  animation: wa-caret 1s step-end infinite;
+}
+
+.wa-label-typing .wa-label-text::after {
+  animation: none;
+}
+
+@keyframes wa-caret {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.wa-label i {
+  position: absolute;
+  right: -7px;
+  top: 50%;
+
+  width: 14px;
+  height: 14px;
+
+  border-radius: 3px;
+
+  background: inherit;
+
+  border-right: 1px solid rgba(0, 180, 99, 0.35);
+  border-top: 1px solid rgba(0, 180, 99, 0.35);
+
+  transform: translateY(-50%) rotate(45deg);
+}
+
+@keyframes wa-label-in {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+/* =========================================================
+   CONTENEDOR DE LA ANIMACIÓN (llena el botón)
    ========================================================= */
 
 .wa-balloon {
   position: absolute;
 
-  left: 50%;
-  top: 50%;
+  inset: 0;
 
-  width: 55px;
-  height: 55px;
-
-  transform:
-    translate(-50%, -50%)
-    scale(1);
-
-  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
-
-/* Lottie */
 
 .wa-lottie {
   display: block;
@@ -104,214 +181,14 @@
 
 
 /* =========================================================
-   ANILLO / EXPLOSIÓN
-   ========================================================= */
-
-.wa-ring {
-  position: absolute;
-
-  left: 50%;
-  top: 50%;
-
-  width: 58px;
-  height: 58px;
-
-  border-radius: 50%;
-
-  border: 2px solid rgba(157,255,210,.85);
-
-  transform:
-    translate(-50%, -50%)
-    scale(.35);
-
-  opacity: 0;
-
-  animation: wa-pop 8s infinite ease-out;
-
-  pointer-events: none;
-
-  z-index: 2;
-}
-
-
-/* =========================================================
-   TEXTO
-   ========================================================= */
-
-.wa-text {
-  position: absolute;
-
-  left: 50%;
-  top: 50%;
-
-  width: 100%;
-
-  transform:
-    translate(-50%, -50%)
-    scale(.75);
-
-  opacity: 0;
-  visibility: hidden;
-
-  color: #fff;
-
-  text-align: center;
-
-  font-family: "Space Grotesk", sans-serif;
-
-  font-size: 8px;
-  font-weight: 700;
-
-  line-height: 1.25;
-
-  text-shadow:
-    0 1px 3px rgba(0,80,45,.55);
-
-  animation: wa-message 8s infinite ease-in-out;
-
-  z-index: 5;
-
-  pointer-events: none;
-}
-
-
-/* =========================================================
-   EXPLOSIÓN
-   ========================================================= */
-
-@keyframes wa-pop {
-
-  /*
-   * Sin explosión
-   */
-
-  0%,
-  69% {
-    opacity: 0;
-
-    transform:
-      translate(-50%, -50%)
-      scale(.35);
-  }
-
-
-  /*
-   * Sale el anillo justo
-   * cuando el globo revienta (71%).
-   */
-
-  72% {
-    opacity: .9;
-
-    transform:
-      translate(-50%, -50%)
-      scale(.9);
-  }
-
-
-  76% {
-    opacity: 0;
-
-    transform:
-      translate(-50%, -50%)
-      scale(1.8);
-  }
-
-
-  100% {
-    opacity: 0;
-  }
-}
-
-
-/* =========================================================
-   TEXTO
-   ========================================================= */
-
-@keyframes wa-message {
-
-  /*
-   * Oculto hasta el reventón (71%).
-   * Sin scale: solo fade, para que no
-   * parezca una segunda "inflada".
-   */
-
-  0%,
-  70% {
-    opacity: 0;
-    visibility: hidden;
-
-    transform:
-      translate(-50%, -50%)
-      scale(1);
-  }
-
-
-  /*
-   * Aparece EN EL MISMO INSTANTE
-   * del pop. Sin espacio en verde.
-   */
-
-  71% {
-    opacity: 1;
-
-    visibility: visible;
-
-    transform:
-      translate(-50%, -50%)
-      scale(1);
-  }
-
-
-  /*
-   * Texto legible.
-   */
-
-  73%,
-  88% {
-    opacity: 1;
-
-    visibility: visible;
-
-    transform:
-      translate(-50%, -50%)
-      scale(1);
-  }
-
-
-  /*
-   * Desaparece suavemente.
-   */
-
-  90% {
-    opacity: 0;
-
-    visibility: hidden;
-
-    transform:
-      translate(-50%, -50%)
-      scale(1);
-  }
-
-
-  100% {
-    opacity: 0;
-
-    visibility: hidden;
-  }
-}
-
-
-/* =========================================================
    HOVER
    ========================================================= */
 
 .wa-fab:hover {
-  transform: translateY(-4px) scale(1.04);
+  transform: translateY(-4px) scale(1.06);
 
   box-shadow:
-    0 16px 42px rgba(0,180,99,.60),
-    inset 0 2px 8px rgba(255,255,255,.22);
+    0 16px 42px rgba(0, 180, 99, 0.6);
 }
 
 
@@ -323,9 +200,9 @@
   outline: none;
 
   box-shadow:
-    0 0 0 4px rgba(255,255,255,.95),
-    0 0 0 7px rgba(0,179,99,.55),
-    0 14px 38px rgba(0,180,99,.45);
+    0 0 0 4px rgba(255, 255, 255, 0.95),
+    0 0 0 7px rgba(0, 179, 99, 0.55),
+    0 14px 38px rgba(0, 180, 99, 0.45);
 }
 
 
@@ -353,18 +230,13 @@
     bottom: 16px;
   }
 
-  .wa-balloon {
-    width: 48px;
-    height: 48px;
-  }
+  .wa-label {
+    right: 100px;
+    bottom: 26px;
 
-  .wa-text {
-    font-size: 7px;
-  }
+    padding: 8px 13px;
 
-  .wa-ring {
-    width: 52px;
-    height: 52px;
+    font-size: 12px;
   }
 
   #top {
@@ -380,22 +252,11 @@
 
 @media (prefers-reduced-motion: reduce) {
 
-  .wa-balloon,
-  .wa-ring,
-  .wa-text {
-    animation: none;
-  }
-
   .wa-balloon {
     opacity: 1;
-
-    transform:
-      translate(-50%, -50%)
-      scale(1);
   }
 
-  .wa-text {
-    opacity: 0;
-    visibility: hidden;
+  .wa-label {
+    animation: none;
   }
 }
